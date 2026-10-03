@@ -1,0 +1,12 @@
+[project]
+name = "qwen-mcp-server"
+version = "1.0.0"
+description = "MCP Server that connects Claude Desktop to local Qwen via OpenAI-compatible API"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=2.0",
+    "httpx",
+]
+
+[project.scripts]
+qwen-mcp = "qwen_mcp.server:main"
