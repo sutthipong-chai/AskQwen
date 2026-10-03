@@ -23,11 +23,41 @@ Claude Desktop
 - **Streaming Response** — real-time output via progress notifications (no more waiting)
 - **7+ coding tools** — generate, edit, review, explain, test code through Qwen
 
-## 🚀 Install
+## ⚡ Let your agent do it (One-Prompt Setup)
+
+Skip manual configuration. Paste this prompt directly into **Claude Code**, **Codex**, or your AI Agent:
+
+```text
+Connect yourself to my Qwen Coder MCP server in this repository. Follow these steps in order and stop whenever you need me:
+
+1. Ensure the Python environment is ready:
+   - Check if `venv` exists in this repository. If not, create it (`python -m venv venv`) and install dependencies (`./venv/Scripts/pip install -e .` on Windows or `./venv/bin/pip install -e .` on macOS/Linux).
+
+2. Register the MCP server for the client you are running in:
+   - Claude Code: 
+     Run `claude mcp add qwen-coder -- "<absolute-path-to-venv-python>" "<absolute-path-to-server.py>"`
+   - Codex:
+     Run `codex mcp add qwen-coder -- "<absolute-path-to-venv-python>" "<absolute-path-to-server.py>"`
+   - Claude Desktop:
+     Add `qwen-coder` to `mcpServers` in `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS). Preserve any existing servers.
+   (Default endpoint is Ollama at http://localhost:11434/v1. If custom QWEN_BASE_URL or QWEN_API_KEY is needed, ask me before configuring).
+
+3. If the tools only appear after a restart or reload, tell me to restart the client and wait.
+
+4. Prove it: Call `list_qwen_models` (or `get_active_model`) and show me:
+   - Connection status to the Qwen API
+   - Currently active model
+   - Available models detected on the host
+
+5. If connection succeeds, ask what task I want to work on and suggest the best model using `recommend_qwen_model`.
+```
+
+---
+
+## 🚀 Manual Install
 
 ```powershell
 # Clone/download this project, then:
-cd qwen-mcp-server
 .\install.ps1
 ```
 
